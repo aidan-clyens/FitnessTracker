@@ -3,6 +3,9 @@ package com.aidanc.fitnesstracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +13,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView dateView = (TextView) findViewById(R.id.date_view);
+        // TODO: set dateView to current date
+
+        ListView exerciseList = (ListView) findViewById(R.id.exercise_list);
+        // TODO: load saved exercises
+
+        Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
+        // TODO: switch to add exercise activity
     }
 }
