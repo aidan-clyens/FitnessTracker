@@ -2,7 +2,9 @@ package com.aidanc.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView dateView = (TextView) findViewById(R.id.date_view);
-        // TODO: set dateView to current date
         String currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
         dateView.setText(currentDate);
 
@@ -28,5 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
         // TODO: switch to add exercise activity
+
+        addExerciseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), NewWorkoutActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
