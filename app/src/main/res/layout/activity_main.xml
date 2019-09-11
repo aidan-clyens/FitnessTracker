@@ -22,7 +22,6 @@
             android:id="@+id/date_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="01/01/2019"
             android:textSize="18sp" />
 
         <TextView

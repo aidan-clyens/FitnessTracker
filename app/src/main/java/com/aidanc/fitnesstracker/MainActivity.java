@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView dateView = (TextView) findViewById(R.id.date_view);
         // TODO: set dateView to current date
+        String currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
+        dateView.setText(currentDate);
 
         ListView exerciseList = (ListView) findViewById(R.id.exercise_list);
         // TODO: load saved exercises
