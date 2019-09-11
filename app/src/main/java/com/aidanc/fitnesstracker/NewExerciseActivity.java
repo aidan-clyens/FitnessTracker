@@ -3,7 +3,6 @@ package com.aidanc.fitnesstracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,10 +23,10 @@ public class NewExerciseActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "add new exercise");
-                Log.i(TAG, exerciseNameInput.getText().toString());
-                Log.i(TAG, weightInput.getText().toString());
-                Log.i(TAG, setsInput.getText().toString());
+                Exercise exercise = new Exercise();
+                exercise.name = exerciseNameInput.getText().toString();
+                exercise.weight = Integer.parseInt(weightInput.getText().toString());
+                exercise.sets = Integer.parseInt(setsInput.getText().toString());
             }
         });
     }
