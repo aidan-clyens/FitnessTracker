@@ -2,6 +2,7 @@ package com.aidanc.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +24,19 @@ public class NewExerciseActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Exercise exercise = new Exercise();
-                exercise.name = exerciseNameInput.getText().toString();
-                exercise.weight = Integer.parseInt(weightInput.getText().toString());
-                exercise.sets = Integer.parseInt(setsInput.getText().toString());
+                // TODO: ensure that inputs are not empty
+                submitExercise(exerciseNameInput.getText().toString(), Integer.parseInt(weightInput.getText().toString()), Integer.parseInt(setsInput.getText().toString()));
             }
         });
+    }
+
+    private void submitExercise(String name, int weight, int sets) {
+        Exercise exercise = new Exercise();
+        exercise.name = name;
+        exercise.weight = weight;
+        exercise.sets = sets;
+
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 }
