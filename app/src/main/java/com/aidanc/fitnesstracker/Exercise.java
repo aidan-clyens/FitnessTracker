@@ -1,6 +1,8 @@
 package com.aidanc.fitnesstracker;
 
-public class Exercise {
+import java.io.Serializable;
+
+public class Exercise implements Serializable {
     public String name;
     public int weight;
     public int sets;

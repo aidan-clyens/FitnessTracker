@@ -2,6 +2,7 @@ package com.aidanc.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class NewExerciseActivity extends AppCompatActivity {
-    final static String TAG = "NewExerciseActivity";
+    public final static String TAG = "NewExerciseActivity";
+    public final static int ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,10 @@ public class NewExerciseActivity extends AppCompatActivity {
         exercise.weight = weight;
         exercise.sets = sets;
 
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
+        // TODO: send exercise data to MainActivity and add to exercises list
+        Intent i = new Intent();
+        i.putExtra("result", exercise);
+        setResult(Activity.RESULT_OK, i);
+        finish();
     }
 }
