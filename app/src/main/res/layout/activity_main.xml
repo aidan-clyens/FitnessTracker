@@ -47,10 +47,10 @@
     <ListView
         android:id="@+id/exercise_list"
         android:layout_width="match_parent"
-        android:layout_height="269dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/add_exercise_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintVertical_bias="0.54" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
