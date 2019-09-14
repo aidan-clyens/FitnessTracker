@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         // Display list of saved exercises
         ListView exerciseList = (ListView) findViewById(R.id.exercise_list);
         // TODO: load saved exercises
+        ArrayList<String> exerciseListItems = getExercises();
+        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
+        exerciseList.setAdapter(exerciseListAdapter);
 
         // Button to add a new exercise to this workout
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
@@ -62,5 +67,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public ArrayList<String> getExercises() {
+        ArrayList<Exercise> exerciseListItems = databaseHelper.getAllExercises();
+
+        ArrayList<String> temp = new ArrayList<>();
+
+        for (Exercise e : exerciseListItems) {
+            String s = String.format(e.name + "     weight: %d      sets: %d", e.weight, e.sets);
+            temp.add(s);
+        }
+
+        return temp;
     }
 }
