@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
+    ListView exerciseListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +34,13 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
         // Display current date
+        String currentDate = getCurrentDate();
         TextView dateView = (TextView) findViewById(R.id.date_view);
-        String currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
         dateView.setText(currentDate);
 
         // Display list of saved exercises
-        ListView exerciseList = (ListView) findViewById(R.id.exercise_list);
-        // TODO: load saved exercises
-        ArrayList<String> exerciseListItems = getExercises(currentDate);
-        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
-        exerciseList.setAdapter(exerciseListAdapter);
+        exerciseListView = (ListView) findViewById(R.id.exercise_list);
+        refreshExercisesList(currentDate);
 
         // Button to add a new exercise to this workout
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
@@ -53,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        refreshExercisesList(getCurrentDate());
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -70,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void refreshExercisesList(String date) {
+        // Display list of saved exercises
+        ArrayList<String> exerciseListItems = getExercises(date);
+        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
+        exerciseListView.setAdapter(exerciseListAdapter);
+    }
+
     public ArrayList<String> getExercises(String date) {
         ArrayList<Exercise> exerciseListItems = databaseHelper.getAllExercisesForDate(date);
 
@@ -81,5 +95,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return temp;
+    }
+
+    public String getCurrentDate() {
+        return new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
     }
 }
