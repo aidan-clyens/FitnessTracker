@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // Display list of saved exercises
         ListView exerciseList = (ListView) findViewById(R.id.exercise_list);
         // TODO: load saved exercises
-        ArrayList<String> exerciseListItems = getExercises();
+        ArrayList<String> exerciseListItems = getExercises(currentDate);
         ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
         exerciseList.setAdapter(exerciseListAdapter);
 
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public ArrayList<String> getExercises() {
-        ArrayList<Exercise> exerciseListItems = databaseHelper.getAllExercises();
+    public ArrayList<String> getExercises(String date) {
+        ArrayList<Exercise> exerciseListItems = databaseHelper.getAllExercisesForDate(date);
 
         ArrayList<String> temp = new ArrayList<>();
 
