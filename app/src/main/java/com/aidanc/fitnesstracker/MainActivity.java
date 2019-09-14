@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 try {
                     Exercise exercise = (Exercise) data.getSerializableExtra("result");
+                    databaseHelper.addExercise(exercise);
                 } catch (NullPointerException e) {
                     Log.e(TAG, e.getMessage());
                 }
