@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";
     public final static int ACTIVITY_REQUEST_CODE = 0;
 
+    DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        databaseHelper = new DatabaseHelper(this);
 
         // Display current date
         TextView dateView = (TextView) findViewById(R.id.date_view);
