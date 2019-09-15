@@ -38,7 +38,6 @@ public class NewExerciseActivity extends AppCompatActivity {
         exercise.weight = weight;
         exercise.sets = sets;
 
-        // TODO: send exercise data to MainActivity and add to exercises list
         Intent i = new Intent();
         i.putExtra("result", exercise);
         setResult(Activity.RESULT_OK, i);
