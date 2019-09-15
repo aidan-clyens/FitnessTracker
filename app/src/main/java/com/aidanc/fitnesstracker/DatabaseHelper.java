@@ -62,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 Exercise exercise = new Exercise();
+                exercise.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
                 exercise.name = cursor.getString(cursor.getColumnIndex("name"));
                 exercise.weight = Integer.parseInt(cursor.getString(cursor.getColumnIndex("weight")));
                 exercise.sets= Integer.parseInt(cursor.getString(cursor.getColumnIndex("sets")));
@@ -88,6 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 Exercise exercise = new Exercise();
+                exercise.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
                 exercise.name = cursor.getString(cursor.getColumnIndex("name"));
                 exercise.weight = Integer.parseInt(cursor.getString(cursor.getColumnIndex("weight")));
                 exercise.sets= Integer.parseInt(cursor.getString(cursor.getColumnIndex("sets")));
