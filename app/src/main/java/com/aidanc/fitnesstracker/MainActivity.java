@@ -1,8 +1,12 @@
 package com.aidanc.fitnesstracker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Go to new workout screen
+                Intent i = new Intent(getApplicationContext(), WorkoutActivity.class);
+                startActivityForResult(i, WorkoutActivity.ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -33,6 +39,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == WorkoutActivity.ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // TODO: Add new workout
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void refreshWorkouts() {
