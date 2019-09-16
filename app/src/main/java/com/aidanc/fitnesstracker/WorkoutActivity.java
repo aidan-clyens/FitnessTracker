@@ -51,6 +51,16 @@ public class WorkoutActivity extends AppCompatActivity {
                 startActivityForResult(i, NewExerciseActivity.ACTIVITY_REQUEST_CODE);
             }
         });
+
+        Button addWorkoutButton = (Button) findViewById(R.id.new_workout_button);
+        addWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK, i);
+                finish();
+            }
+        });
     }
 
     @Override
