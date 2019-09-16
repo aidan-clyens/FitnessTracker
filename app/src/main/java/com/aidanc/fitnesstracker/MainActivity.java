@@ -15,12 +15,16 @@ public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";
     public final static int ACTIVITY_REQUEST_CODE = 2;
 
+    DatabaseHelper databaseHelper;
+
     ListView workoutListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        databaseHelper = new DatabaseHelper(this);
 
         workoutListView = (ListView) findViewById(R.id.workout_list);
         refreshWorkouts();
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == WorkoutActivity.ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // TODO: Add new workout
+                databaseHelper.addWorkout();
             }
         }
 

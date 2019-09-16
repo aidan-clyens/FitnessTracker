@@ -15,6 +15,7 @@ import java.util.Locale;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "fitness_data";
+    private static final String WORKOUT_TABLE = "workouts";
     private static final String EXERCISE_TABLE = "exercises";
 
 
@@ -24,6 +25,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String createWorkoutTableQuery = "CREATE TABLE IF NOT EXISTS " + WORKOUT_TABLE + "(" +
+                "id INTEGER NOT NULL PRIMARY KEY," +
+                "date DATETIME," +
+                "UNIQUE(date));";
+
+        sqLiteDatabase.execSQL(createWorkoutTableQuery);
+
         String createExerciseTableQuery = "CREATE TABLE IF NOT EXISTS " + EXERCISE_TABLE + "(" +
                 "id INTEGER NOT NULL PRIMARY KEY," +
                 "name VARCHAR(30)," +
@@ -37,6 +45,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public void addWorkout() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("date", new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date()));
+
+        db.insert(WORKOUT_TABLE, null, values);
+        db.close();
     }
 
     public void addExercise(Exercise exercise) {
