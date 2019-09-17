@@ -70,6 +70,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public ArrayList<Workout> getAllWorkouts() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String getAllQuery = "SELECT * FROM " + WORKOUT_TABLE + ";";
+        Cursor cursor = db.rawQuery(getAllQuery, null);
+
+        ArrayList<Workout> workouts = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Workout workout = new Workout();
+                workout.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
+                workout.date = cursor.getString(cursor.getColumnIndex("date"));
+
+                workouts.add(workout);
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        db.close();
+
+        return workouts;
+    }
+
     public ArrayList<Exercise> getAllExercises() {
         SQLiteDatabase db = this.getReadableDatabase();
 

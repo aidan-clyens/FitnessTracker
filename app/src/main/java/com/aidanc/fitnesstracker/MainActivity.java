@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public final static String TAG = "MainActivity";
@@ -43,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        refreshWorkouts();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == WorkoutActivity.ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                // TODO: Add new workout
                 databaseHelper.addWorkout();
             }
         }
@@ -58,6 +61,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshWorkouts() {
-        // TODO: Get list of all workouts
+        ArrayList<String> workoutListItems = getWorkouts();
+        ArrayAdapter<String> workoutListAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, workoutListItems);
+        workoutListView.setAdapter(workoutListAdapter);
+    }
+
+    public ArrayList<String> getWorkouts() {
+        ArrayList<Workout> workouts = databaseHelper.getAllWorkouts();
+
+        ArrayList<String> temp = new ArrayList<>();
+        for (Workout w : workouts) {
+            temp.add(w.date);
+        }
+
+        return temp;
     }
 }
