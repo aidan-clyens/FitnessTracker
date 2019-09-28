@@ -32,15 +32,18 @@ public class WorkoutTableHandler {
         }
     }
 
-    public ArrayList<String> getAllWorkouts() {
+    public ArrayList<Workout> getAllWorkouts() {
         ArrayList<ArrayList<String>> entries = databaseHandler.getEntries("SELECT * FROM " + TABLE_NAME);
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<Workout> workouts = new ArrayList<>();
 
         for (ArrayList<String> row : entries) {
-            dates.add(row.get(1));
+            Workout workout = new Workout();
+            workout.id = Integer.parseInt(row.get(0));
+            workout.date = row.get(1);
+            workouts.add(workout);
         }
 
-        return dates;
+        return workouts;
     }
 }

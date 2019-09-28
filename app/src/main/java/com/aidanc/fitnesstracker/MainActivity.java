@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         workoutTableHandler = new WorkoutTableHandler(this);
 
         workoutListView = (ListView) findViewById(R.id.workout_list);
-        refreshWorkouts();
+        final ArrayList<Workout> workouts = refreshWorkouts();
         workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int workout_id = workoutTableHandler.getWorkout(workoutTableHandler.getAllWorkouts().get(i));
+                int workout_id = workouts.get(i).id;
                 Log.d(TAG, String.format("workout_id = %d", workout_id));
 
                 Intent intent = new Intent(getApplicationContext(), WorkoutActivity.class);
@@ -83,10 +83,18 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void refreshWorkouts() {
-        ArrayList<String> workoutListItems = workoutTableHandler.getAllWorkouts();
-        ArrayAdapter<String> workoutListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, workoutListItems);
+    public ArrayList<Workout> refreshWorkouts() {
+        ArrayList<Workout> workoutListItems = workoutTableHandler.getAllWorkouts();
+        ArrayList<String> workoutListDates = new ArrayList<>();
+
+        for (Workout w : workoutListItems) {
+            workoutListDates.add(w.date);
+        }
+
+        ArrayAdapter<String> workoutListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, workoutListDates);
         workoutListView.setAdapter(workoutListAdapter);
+
+        return workoutListItems;
     }
 
     public String getCurrentDate() {
