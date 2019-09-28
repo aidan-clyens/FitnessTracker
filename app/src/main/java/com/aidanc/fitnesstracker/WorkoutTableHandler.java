@@ -33,12 +33,12 @@ public class WorkoutTableHandler {
     }
 
     public ArrayList<String> getAllWorkouts() {
-        ArrayList<ArrayList<String>> entries = databaseHandler.getEntries("SELECT id FROM " + TABLE_NAME);
+        ArrayList<ArrayList<String>> entries = databaseHandler.getEntries("SELECT * FROM " + TABLE_NAME);
 
         ArrayList<String> dates = new ArrayList<>();
 
         for (ArrayList<String> row : entries) {
-            dates.add(row.get(0));
+            dates.add(row.get(1));
         }
 
         return dates;
