@@ -22,16 +22,21 @@ public class WorkoutActivity extends AppCompatActivity {
     public final static String TAG = "WorkoutActivity";
     public final static int ACTIVITY_REQUEST_CODE = 0;
 
-    DatabaseHelper databaseHelper;
+    ExerciseTableHandler exerciseTableHandler;
 
     ListView exerciseListView;
+
+    int workout_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
 
-        databaseHelper = new DatabaseHelper(this);
+        exerciseTableHandler = new ExerciseTableHandler(this);
+
+        workout_id = this.getIntent().getIntExtra("workout_id", -1);
+        Log.d(TAG, String.format("workout_id = %d", workout_id));
 
         // Display current date
         String currentDate = getCurrentDate();
@@ -40,7 +45,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
         // Display list of saved exercises
         exerciseListView = (ListView) findViewById(R.id.exercise_list);
-        refreshExercisesList(currentDate);
+        refreshExercisesList();
 
         // Button to add a new exercise to this workout
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
@@ -67,7 +72,7 @@ public class WorkoutActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        refreshExercisesList(getCurrentDate());
+        refreshExercisesList();
     }
 
 
@@ -77,7 +82,8 @@ public class WorkoutActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 try {
                     Exercise exercise = (Exercise) data.getSerializableExtra("result");
-                    databaseHelper.addExercise(exercise);
+                    exercise.workout_id = workout_id;
+                    exerciseTableHandler.addExercise(exercise);
                 } catch (NullPointerException e) {
                     Log.e(TAG, e.getMessage());
                 }
@@ -87,15 +93,15 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void refreshExercisesList(String date) {
+    public void refreshExercisesList() {
         // Display list of saved exercises
-        ArrayList<String> exerciseListItems = getExercises(date);
+        ArrayList<String> exerciseListItems = getExercises();
         ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
         exerciseListView.setAdapter(exerciseListAdapter);
     }
 
-    public ArrayList<String> getExercises(String date) {
-        ArrayList<Exercise> exerciseListItems = databaseHelper.getAllExercisesForDate(date);
+    public ArrayList<String> getExercises() {
+        ArrayList<Exercise> exerciseListItems = exerciseTableHandler.getExercises(workout_id);
 
         ArrayList<String> temp = new ArrayList<>();
 

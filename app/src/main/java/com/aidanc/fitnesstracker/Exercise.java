@@ -7,4 +7,5 @@ public class Exercise implements Serializable {
     public String name;
     public int weight;
     public int sets;
+    public int workout_id;
 }
