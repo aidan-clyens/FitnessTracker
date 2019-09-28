@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             workoutListDates.add(w.date);
         }
 
-        ArrayAdapter<String> workoutListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, workoutListDates);
+        ArrayAdapter<String> workoutListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, workoutListDates);
         workoutListView.setAdapter(workoutListAdapter);
 
         return workoutListItems;

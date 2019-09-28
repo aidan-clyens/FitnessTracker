@@ -120,7 +120,7 @@ public class WorkoutActivity extends AppCompatActivity {
             exercisesListString.add(s);
         }
 
-        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exercisesListString);
+        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, exercisesListString);
         exerciseListView.setAdapter(exerciseListAdapter);
 
         return exerciseListItems;
