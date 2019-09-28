@@ -45,7 +45,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
         // Display list of saved exercises
         exerciseListView = (ListView) findViewById(R.id.exercise_list);
-        refreshExercisesList();
+        final ArrayList<Exercise> exercises = refreshExercisesList();
 
         // Button to add a new exercise to this workout
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
@@ -93,24 +93,21 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void refreshExercisesList() {
+    public ArrayList<Exercise> refreshExercisesList() {
         // Display list of saved exercises
-        ArrayList<String> exerciseListItems = getExercises();
-        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseListItems);
-        exerciseListView.setAdapter(exerciseListAdapter);
-    }
-
-    public ArrayList<String> getExercises() {
         ArrayList<Exercise> exerciseListItems = exerciseTableHandler.getExercises(workout_id);
 
-        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<String> exercisesListString = new ArrayList<>();
 
         for (Exercise e : exerciseListItems) {
             String s = String.format(e.name + "     weight: %d      sets: %d", e.weight, e.sets);
-            temp.add(s);
+            exercisesListString.add(s);
         }
 
-        return temp;
+        ArrayAdapter<String> exerciseListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exercisesListString);
+        exerciseListView.setAdapter(exerciseListAdapter);
+
+        return exerciseListItems;
     }
 
     public String getCurrentDate() {
