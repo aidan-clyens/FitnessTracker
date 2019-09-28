@@ -35,7 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "name VARCHAR(30)," +
                 "weight INTEGER," +
                 "sets INTEGER," +
-                "date DATETIME);";
+                "workout_id INTEGER);";
 
         sqLiteDatabase.execSQL(createExerciseTableQuery);
     }
