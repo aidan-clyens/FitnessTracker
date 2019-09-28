@@ -56,6 +56,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return getLastId(table);
     }
 
+    public void delete(String table, String whereClause) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(table, whereClause, null);
+
+        db.close();
+    }
+
     public ArrayList<ArrayList<String>> getEntries(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
 

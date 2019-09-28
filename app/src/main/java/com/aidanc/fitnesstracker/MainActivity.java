@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     WorkoutTableHandler workoutTableHandler;
 
     ListView workoutListView;
+    ArrayList<Workout> workouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         workoutTableHandler = new WorkoutTableHandler(this);
 
         workoutListView = (ListView) findViewById(R.id.workout_list);
-        final ArrayList<Workout> workouts = refreshWorkouts();
+        workouts = refreshWorkouts();
         workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -45,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), WorkoutActivity.class);
                 intent.putExtra("workout_id", workout_id);
                 startActivityForResult(intent, WorkoutActivity.ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        workoutListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, String.format("delete item %d", workouts.get(i).id));
+
+                workoutTableHandler.deleteWorkout(workouts.get(i));
+                workouts = refreshWorkouts();
+
+                Toast.makeText(MainActivity.this, "Deleted workout", Toast.LENGTH_SHORT).show();
+
+                return true;
             }
         });
 

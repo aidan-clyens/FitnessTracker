@@ -9,9 +9,11 @@ public class WorkoutTableHandler {
     private final static String TABLE_NAME = "workouts";
 
     private DatabaseHandler databaseHandler;
+    private ExerciseTableHandler exerciseTableHandler;
 
     public WorkoutTableHandler(Context context) {
         databaseHandler = new DatabaseHandler(context, MainActivity.DATABASE_NAME);
+        exerciseTableHandler = new ExerciseTableHandler(context);
     }
 
     public int addWorkout(String date) {
@@ -19,6 +21,11 @@ public class WorkoutTableHandler {
         values.put("date", date);
 
         return databaseHandler.insert(TABLE_NAME, values);
+    }
+
+    public void deleteWorkout(Workout workout) {
+        databaseHandler.delete(TABLE_NAME, String.format("id=%d", workout.id));
+        exerciseTableHandler.deleteExercisesFromWorkout(workout.id);
     }
 
     public int getWorkout(String date) {

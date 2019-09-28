@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class WorkoutActivity extends AppCompatActivity {
     ExerciseTableHandler exerciseTableHandler;
 
     ListView exerciseListView;
+    ArrayList<Exercise> exercises;
 
     int workout_id;
 
@@ -46,7 +48,20 @@ public class WorkoutActivity extends AppCompatActivity {
 
         // Display list of saved exercises
         exerciseListView = (ListView) findViewById(R.id.exercise_list);
-        final ArrayList<Exercise> exercises = refreshExercisesList();
+        exercises = refreshExercisesList();
+        exerciseListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, String.format("delete item %d", exercises.get(i).id));
+
+                exerciseTableHandler.deleteExercise(exercises.get(i));
+                exercises = refreshExercisesList();
+
+                Toast.makeText(WorkoutActivity.this, "Deleted exercise", Toast.LENGTH_SHORT).show();
+
+                return true;
+            }
+        });
 
         // Button to add a new exercise to this workout
         Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);

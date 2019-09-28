@@ -24,6 +24,14 @@ public class ExerciseTableHandler {
         return databaseHandler.insert(TABLE_NAME, values);
     }
 
+    public void deleteExercise(Exercise exercise) {
+        databaseHandler.delete(TABLE_NAME, String.format("id=%d", exercise.id));
+    }
+
+    public void deleteExercisesFromWorkout(int workout_id) {
+        databaseHandler.delete(TABLE_NAME, String.format("workout_id=%d", workout_id));
+    }
+
     public ArrayList<Exercise> getExercises(int workout_id) {
         ArrayList<ArrayList<String>> entries = databaseHandler.getEntries("SELECT * FROM " + TABLE_NAME + " WHERE workout_id=" + workout_id);
 
