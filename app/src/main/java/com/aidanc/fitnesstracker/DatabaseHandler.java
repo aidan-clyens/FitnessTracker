@@ -60,12 +60,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ArrayList<ArrayList<String>> rows = new ArrayList<>();
-        ArrayList<String> cols = new ArrayList<>();
 
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
+                ArrayList<String> cols = new ArrayList<>();
+
                 for (int i = 0; i < cursor.getColumnCount(); i++) {
                     cols.add(cursor.getString(i));
                 }
