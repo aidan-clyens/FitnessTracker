@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sourcesanspro_regular"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="@string/workouts_title"
         android:textSize="30sp"
         android:elevation="4dp"
