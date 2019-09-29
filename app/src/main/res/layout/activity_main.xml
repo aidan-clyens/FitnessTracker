@@ -51,6 +51,10 @@
         android:text="@string/new_workout_button"
         android:textSize="18sp"
         android:fontFamily="@font/sourcesanspro_semibold"
+        android:background="@drawable/button"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:elevation="2dp"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

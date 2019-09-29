@@ -63,11 +63,15 @@
 
     <Button
         android:id="@+id/add_exercise_button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/new_exercise_button"
         android:textSize="18sp"
         android:fontFamily="@font/sourcesanspro_semibold"
+        android:background="@drawable/button"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:elevation="2dp"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toTopOf="@+id/new_workout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,10 +79,14 @@
     <Button
         android:id="@+id/new_workout_button"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:text="@string/save_workout_button"
         android:textSize="18sp"
         android:fontFamily="@font/sourcesanspro_semibold"
+        android:background="@drawable/button"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:elevation="2dp"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
