@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NewExerciseActivity extends AppCompatActivity {
     public final static String TAG = "NewExerciseActivity";
@@ -26,8 +27,16 @@ public class NewExerciseActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: ensure that inputs are not empty
-                submitExercise(exerciseNameInput.getText().toString(), Integer.parseInt(weightInput.getText().toString()), Integer.parseInt(setsInput.getText().toString()));
+                String name = exerciseNameInput.getText().toString();
+                String weight = weightInput.getText().toString();
+                String sets = setsInput.getText().toString();
+
+                if (name.equals("") || weight.equals("") || sets.equals("")) {
+                    Toast.makeText(NewExerciseActivity.this, "Invalid inputs", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                submitExercise(name, Integer.parseInt(weight), Integer.parseInt(sets));
             }
         });
     }
