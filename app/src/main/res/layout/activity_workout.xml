@@ -25,6 +25,7 @@
         android:fontFamily="@font/sourcesanspro_regular"
         android:textSize="22sp"
         android:paddingTop="3dp"
+        android:textColor="@color/colorTextDark"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -37,6 +38,7 @@
         android:textAlignment="textStart"
         android:textSize="24sp"
         android:translationY="10sp"
+        android:textColor="@color/colorTextDark"
         app:layout_constraintTop_toBottomOf="@+id/date_view" />
 
     <TextView
@@ -48,6 +50,7 @@
         android:text="@string/workout_title"
         android:textSize="30sp"
         android:elevation="4dp"
+        android:textColor="@color/colorTextDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,6 +76,7 @@
         android:shadowColor="@color/colorPrimaryDark"
         android:elevation="2dp"
         android:layout_margin="5dp"
+        android:textColor="@color/colorTextDark"
         app:layout_constraintBottom_toTopOf="@+id/new_workout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -88,6 +92,7 @@
         android:shadowColor="@color/colorPrimaryDark"
         android:elevation="2dp"
         android:layout_margin="5dp"
+        android:textColor="@color/colorTextDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
