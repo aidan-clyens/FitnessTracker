@@ -27,7 +27,8 @@
         android:text="@string/workouts_title"
         android:textSize="30sp"
         android:elevation="4dp"
-        android:textColor="@color/colorTextDark"
+        android:textColor="@color/colorTextLight"
+        android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
