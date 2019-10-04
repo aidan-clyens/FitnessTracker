@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="workouts_title">Workouts</string>
+    <string name="workout_title">Workout</string>
+    <string name="exercise_title">Exercises</string>
+</resources>

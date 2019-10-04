@@ -15,12 +15,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exercise"
-            android:textSize="18sp" />
+            android:fontFamily="@font/sourcesanspro_regular"
+            android:textSize="20sp"
+            android:textColor="@color/colorTextDark" />
 
         <EditText
             android:id="@+id/exercise_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:ems="10"
             android:inputType="textPersonName" />
 
@@ -29,12 +32,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Weight"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/sourcesanspro_regular"
+            android:textColor="@color/colorTextDark" />
 
         <EditText
             android:id="@+id/weight_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:ems="10"
             android:inputType="number" />
 
@@ -43,12 +50,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sets"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/sourcesanspro_regular"
+            android:textColor="@color/colorTextDark" />
 
         <EditText
             android:id="@+id/sets_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:ems="10"
             android:inputType="number" />
 
@@ -56,7 +67,14 @@
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="@string/submit_button"
+            android:textSize="18sp"
+            android:fontFamily="@font/sourcesanspro_semibold"
+            android:background="@drawable/button"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorTextDark" />
 
     </LinearLayout>
 

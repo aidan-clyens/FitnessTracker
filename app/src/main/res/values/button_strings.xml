@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_workout_button">New Workout</string>
+    <string name="new_exercise_button">New Exercise</string>
+    <string name="save_workout_button">Save Workout</string>
+    <string name="submit_button">Submit</string>
+</resources>
