@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     WorkoutTableHandler workoutTableHandler;
 
     ListView workoutListView;
+    Button newWorkoutButton;
+
     ArrayList<Workout> workouts;
 
     @Override
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                 workoutTableHandler.deleteWorkout(workouts.get(i));
                 workouts = refreshWorkouts();
+                updateNewWorkoutButtonVisibility();
 
                 Toast.makeText(MainActivity.this, "Deleted workout", Toast.LENGTH_SHORT).show();
 
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button newWorkoutButton = (Button) findViewById(R.id.new_workout_button);
+        newWorkoutButton = (Button) findViewById(R.id.new_workout_button);
         newWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,12 +83,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i, WorkoutActivity.ACTIVITY_REQUEST_CODE);
             }
         });
+
+        updateNewWorkoutButtonVisibility();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         workouts = refreshWorkouts();
+
+        updateNewWorkoutButtonVisibility();
     }
 
     @Override
@@ -111,6 +118,23 @@ public class MainActivity extends AppCompatActivity {
         workoutListView.setAdapter(workoutListAdapter);
 
         return workoutListItems;
+    }
+
+    public void updateNewWorkoutButtonVisibility() {
+        if (isWorkoutCreatedForToday()) {
+            newWorkoutButton.setVisibility(View.INVISIBLE);
+        }
+        else {
+            newWorkoutButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public boolean isWorkoutCreatedForToday() {
+        for (Workout w : workouts) {
+            if (w.date.equals(getCurrentDate())) return true;
+        }
+
+        return false;
     }
 
     public String getCurrentDate() {
