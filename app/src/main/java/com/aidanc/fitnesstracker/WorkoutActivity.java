@@ -29,6 +29,10 @@ public class WorkoutActivity extends AppCompatActivity {
     ListView exerciseListView;
     ArrayList<Exercise> exercises;
 
+    Button addExerciseButton;
+
+    String date;
+
     int workout_id;
 
     @Override
@@ -42,9 +46,9 @@ public class WorkoutActivity extends AppCompatActivity {
         Log.d(TAG, String.format("workout_id = %d", workout_id));
 
         // Display current date
-        String currentDate = getCurrentDate();
+        date = getCurrentDate();
         TextView dateView = (TextView) findViewById(R.id.date_view);
-        dateView.setText(currentDate);
+        dateView.setText(date);
 
         // Display list of saved exercises
         exerciseListView = (ListView) findViewById(R.id.exercise_list);
@@ -64,7 +68,7 @@ public class WorkoutActivity extends AppCompatActivity {
         });
 
         // Button to add a new exercise to this workout
-        Button addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
+        addExerciseButton = (Button) findViewById(R.id.add_exercise_button);
         addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +76,8 @@ public class WorkoutActivity extends AppCompatActivity {
                 startActivityForResult(i, NewExerciseActivity.ACTIVITY_REQUEST_CODE);
             }
         });
+
+        updateAddExerciseButtonVisibility();
 
         Button addWorkoutButton = (Button) findViewById(R.id.new_workout_button);
         addWorkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +95,7 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onStart();
 
         refreshExercisesList();
+        updateAddExerciseButtonVisibility();
     }
 
 
@@ -107,6 +114,14 @@ public class WorkoutActivity extends AppCompatActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void updateAddExerciseButtonVisibility() {
+        if (date.equals(getCurrentDate())) {
+            addExerciseButton.setVisibility(View.VISIBLE);
+        } else {
+            addExerciseButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     public ArrayList<Exercise> refreshExercisesList() {
