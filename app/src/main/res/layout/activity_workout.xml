@@ -11,51 +11,61 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/date_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="146dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
         android:fontFamily="@font/sourcesanspro_regular"
-        android:textSize="22sp"
-        android:paddingTop="3dp"
-        android:textColor="@color/colorTextDark"
         android:paddingLeft="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        tools:layout_editor_absoluteX="0dp" />
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextLight"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/sourcesanspro_regular"
+        android:paddingLeft="10dp"
         android:text="@string/exercise_title"
         android:textAlignment="textStart"
+        android:textColor="@color/colorTextDark"
         android:textSize="24sp"
         android:translationY="10sp"
-        android:textColor="@color/colorTextDark"
-        android:paddingLeft="10dp"
         app:layout_constraintTop_toBottomOf="@+id/date_view" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="157dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:elevation="4dp"
         android:fontFamily="@font/sourcesanspro_regular"
+        android:paddingLeft="10dp"
         android:paddingTop="15dp"
         android:text="@string/workout_title"
-        android:textSize="30sp"
-        android:elevation="4dp"
         android:textColor="@color/colorTextLight"
-        android:paddingLeft="10dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/exercise_list"
