@@ -44,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int workout_id = workouts.get(i).id;
+                String workout_date = workouts.get(i).date;
                 Log.d(TAG, String.format("workout_id = %d", workout_id));
 
                 Intent intent = new Intent(getApplicationContext(), WorkoutActivity.class);
                 intent.putExtra("workout_id", workout_id);
+                intent.putExtra("workout_date", workout_date);
                 startActivityForResult(intent, WorkoutActivity.ACTIVITY_REQUEST_CODE);
             }
         });
@@ -71,15 +73,16 @@ public class MainActivity extends AppCompatActivity {
         newWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int workout_id = workoutTableHandler.getWorkout(getCurrentDate());
-                Log.d(TAG, String.format("workout_id = %d", workout_id));
+                Workout workout = workoutTableHandler.getWorkout(getCurrentDate());
+                Log.d(TAG, String.format("workout_id = %d", workout.id));
 
-                if (workout_id == -1) {
-                    workout_id = workoutTableHandler.addWorkout(getCurrentDate());
+                if (workout == null) {
+                    workout.id = workoutTableHandler.addWorkout(getCurrentDate());
                 }
 
                 Intent i = new Intent(getApplicationContext(), WorkoutActivity.class);
-                i.putExtra("workout_id", workout_id);
+                i.putExtra("workout_id", workout.id);
+                i.putExtra("workout_date", workout.date);
                 startActivityForResult(i, WorkoutActivity.ACTIVITY_REQUEST_CODE);
             }
         });

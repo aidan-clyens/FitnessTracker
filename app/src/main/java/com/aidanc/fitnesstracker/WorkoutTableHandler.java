@@ -28,15 +28,18 @@ public class WorkoutTableHandler {
         exerciseTableHandler.deleteExercisesFromWorkout(workout.id);
     }
 
-    public int getWorkout(String date) {
+    public Workout getWorkout(String date) {
         ArrayList<ArrayList<String>> entries = databaseHandler.getEntries("SELECT * FROM " + TABLE_NAME + " WHERE date='" + date + "' LIMIT 1");
 
         if (entries.size() > 0) {
-            return Integer.parseInt(entries.get(0).get(0));
+            Workout workout = new Workout();
+            workout.id = Integer.parseInt(entries.get(0).get(0));
+            workout.date = entries.get(0).get(1);
+
+            return workout;
         }
-        else {
-            return -1;
-        }
+
+        return null;
     }
 
     public ArrayList<Workout> getAllWorkouts() {

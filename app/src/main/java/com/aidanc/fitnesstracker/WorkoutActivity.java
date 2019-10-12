@@ -43,10 +43,10 @@ public class WorkoutActivity extends AppCompatActivity {
         exerciseTableHandler = new ExerciseTableHandler(this);
 
         workout_id = this.getIntent().getIntExtra("workout_id", -1);
+        date = this.getIntent().getStringExtra("workout_date");
         Log.d(TAG, String.format("workout_id = %d", workout_id));
 
-        // Display current date
-        date = getCurrentDate();
+        // Display date
         TextView dateView = (TextView) findViewById(R.id.date_view);
         dateView.setText(date);
 
